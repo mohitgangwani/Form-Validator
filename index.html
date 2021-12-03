@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Form with validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3>Information</h3>
+        <form>
+            <div class = "group">
+                <input type="text" id="name" placeholder="Name" required>
+                <small id = "ername" class = "errormsg"></small>
+            </div>
+            <div class = "group">
+                <input type="text" id="add" placeholder="Address" required maxlength="50">
+                <small id = "eradd" class = "errormsg"></small>
+            </div>
+            <div class = "group">
+                <input type="text" id="city" placeholder="City" required>
+                <small id = "ercity" class = "errormsg"></small>
+            </div>
+            <div class = "group">
+                <input type="text" id="pincode" placeholder="Pincode" required maxlength="6">
+                <small id = "erpin" class = "errormsg"></small>
+            </div>
+            <div class = "group">
+                <input type="text" id="mail" placeholder="Mail Id" required>
+                <small id = "ermail" class = "errormsg"></small>
+            </div>
+            <div class = "group">
+                <input type="number" id="phoneno" placeholder="Phone Number" required maxlength="10">
+                <small id = "erno" class = "errormsg"></small>
+             </div>   
+            <div class = "group">
+                <input type="text" id="details" placeholder="Product Details" required>
+                <small id = "erdetails" class = "errormsg"></small>
+            </div>   
+            <div class="mode">
+                <label class="payment">Payment Method:</label>
+                <input type="radio" class="payment" name="option1" checked value="upi">
+                <label>UPI</label>
+                <input type="radio" class="payment" name="option1" value="debit">
+                <label style = "margin-top: 20px;">Debit Card</label>
+            </div>
+            <div class="btn">
+                <button>Submit</button>
+            </div>
+    </div>
+    </form>
+</body>
+<script>
+    const name = document.getElementById("name");
+    const address = document.getElementById("add");
+    const city = document.getElementById("city");
+    const pincode = document.getElementById("pincode");
+    const mail = document.getElementById("mail");
+    const phoneno = document.getElementById("phoneno");
+    const details = document.getElementById("details");
+    // console.log(name, address, city, pincode, mail, phoneno, details)
+    name.onkeydown = function(){
+        let regex = /^[a-zA-Z]([0-9A-Za-z][\\s]{0,10})/;
+        if(regex.test(name.value)){
+            name.style.borderBottom = "1px solid green";
+            document.getElementById('ername').innerHTML = ""
+        }
+        else{
+            name.style.borderBottom = "1px solid red"; 
+            document.getElementById('ername').innerHTML = "Name should not start with digits or space"
+        }
+        }
+        name.addEventListener('blur', ()=>{
+            if(name.value == ""){
+                name.style.borderBottom = "1px solid red"; 
+                document.getElementById("ername").innerHTML = "Name field should not be empty";
+            }
+        })
+        address.addEventListener('keydown',()=>{
+            let addregex = /([0-9A-Za-z][\\s])/;
+            if(addregex.test(address.value)){
+                address.style.borderBottom = "1px solid green";
+                document.getElementById('eradd').innerHTML = ""
+            }
+            else{
+                address.style.borderBottom = "1px solid red";
+                document.getElementById('eradd').innerHTML = "Address should not start with space"
+            }
+        })
+        address.addEventListener('blur', ()=>{
+            if(address.value == ""){
+                address.style.borderBottom = "1px solid red"; 
+                document.getElementById("eradd").innerHTML = "Address field should not be empty";
+            }
+        })
+        city.onkeydown = function(){
+            let cityregex = /[a-zA-z][\\s]/;
+            if(cityregex.test(city.value)){
+                city.style.borderBottom = "1px solid green";
+                document.getElementById('ercity').innerHTML = ""
+            }
+            else{
+                city.style.borderBottom = "1px solid red";
+                document.getElementById('ercity').innerHTML = "City should not start with digits or space"
+            }
+        }
+        city.addEventListener('blur', ()=>{
+            if(city.value == ""){
+                city.style.borderBottom = "1px solid red"; 
+                document.getElementById("ercity").innerHTML = "City field should not be Empty";
+            }
+        })
+        pincode.onkeydown = function(){
+            let pinregex = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/
+            if(pinregex.test(pincode.value)){
+                pincode.style.borderBottom = "1px solid green";
+                document.getElementById('erpin').innerHTML = ""
+            }
+            else{
+                pincode.style.borderBottom = "1px solid red";
+                document.getElementById('erpin').innerHTML = "Pincode should not start with space"
+            }
+        }
+        pincode.addEventListener('blur', ()=>{
+            if(pincode.value == ""){
+                pincode.style.borderBottom = "1px solid red"; 
+                document.getElementById("erpin").innerHTML = "Pincode field should not be empty";
+            }
+        })
+        mail.onkeydown = function(){
+        let eregex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/
+        if(eregex.test(mail.value)){
+            mail.style.borderBottom = "1px solid green";
+            document.getElementById('ermail').innerHTML = ""
+        }
+        else{
+            mail.style.borderBottom = "1px solid red"; 
+            document.getElementById('ermail').innerHTML = "Email should not start with digits or space"
+        }
+        }
+        mail.addEventListener('blur', ()=>{
+            if(mail.value == ""){
+                mail.style.borderBottom = "1px solid red"; 
+                document.getElementById("ermail").innerHTML = "Email field should not be empty";
+            }
+        })
+        phoneno.onkeydown = function(){
+            let pregex = /[6-9]{1}[0-9]{9}/
+        if(pregex.test(phoneno.value)){
+            phoneno.style.borderBottom = "1px solid green";
+            document.getElementById('erno').innerHTML = ""
+        }
+        else{
+            phoneno.style.borderBottom = "1px solid red"; 
+            document.getElementById('erno').innerHTML = "Phone number should not start with space"
+        }
+        }
+        phoneno.addEventListener('blur', ()=>{
+            if(phoneno.value == ""){
+                phoneno.style.borderBottom = "1px solid red"; 
+                document.getElementById("erno").innerHTML = "Phone number field should not be empty";
+            }
+        })
+        details.onkeydown = function(){
+        let dregex = /[A-Za-z][//s]/
+        if(dregex.test(details.value)){
+            details.style.borderBottom = "1px solid green";
+            document.getElementById('erdetails').innerHTML = ""
+        }
+        else{
+            details.style.borderBottom = "1px solid red"; 
+            document.getElementById('erdetails').innerHTML = "Product details should not start with space"
+        }
+        }
+        details.addEventListener('blur', ()=>{
+            if(details.value == ""){
+                details.style.borderBottom = "1px solid red"; 
+                document.getElementById("erdetails").innerHTML = "Product Details field should not be Empty";
+            }
+        })
+        
+</script>
+</html>
+<!-- Create a webpage that displays buyers information entry form containing name, address, city, pincode, mailid, phone number, product details, payment mode. Frame different validation rules for user inputs. Use javascript and regular  expressions to perfrom error checking on user input as per validation rules -->
