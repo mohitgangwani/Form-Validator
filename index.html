@@ -1,6 +1,7 @@
+<!-- Create a webpage that displays buyers information entry form containing name, address, city, pincode, mailid, phone number, product details, payment mode. Frame different validation rules for user inputs. Use javascript and regular  expressions to perfrom error checking on user input as per validation rules -->
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title> Form with validation</title>
     <link rel="stylesheet" href="style.css">
@@ -9,7 +10,7 @@
 <body>
     <div class="container">
         <h3>Information</h3>
-        <form>
+        <form id = "F">
             <div class = "group">
                 <input type="text" id="name" placeholder="Name" required>
                 <small id = "ername" class = "errormsg"></small>
@@ -46,7 +47,7 @@
                 <label style = "margin-top: 20px;">Debit Card</label>
             </div>
             <div class="btn">
-                <button>Submit</button>
+                <button onclick="checkSubmit()">Submit</button>
             </div>
     </div>
     </form>
@@ -59,7 +60,6 @@
     const mail = document.getElementById("mail");
     const phoneno = document.getElementById("phoneno");
     const details = document.getElementById("details");
-    // console.log(name, address, city, pincode, mail, phoneno, details)
     name.onkeydown = function(){
         let regex = /^[a-zA-Z]([0-9A-Za-z][\\s]{0,10})/;
         if(regex.test(name.value)){
@@ -78,7 +78,7 @@
             }
         })
         address.addEventListener('keydown',()=>{
-            let addregex = /([0-9A-Za-z][\\s])/;
+            let addregex = /([0-9A-Za-z])/;
             if(addregex.test(address.value)){
                 address.style.borderBottom = "1px solid green";
                 document.getElementById('eradd').innerHTML = ""
@@ -95,7 +95,7 @@
             }
         })
         city.onkeydown = function(){
-            let cityregex = /[a-zA-z][\\s]/;
+            let cityregex = /[A-Za-z]/
             if(cityregex.test(city.value)){
                 city.style.borderBottom = "1px solid green";
                 document.getElementById('ercity').innerHTML = ""
@@ -179,7 +179,11 @@
                 document.getElementById("erdetails").innerHTML = "Product Details field should not be Empty";
             }
         })
-        
+        function checkSubmit(){
+            result = document.getElementById("F").checkValidity()
+            if(result){
+                alert('submitted')
+            }
+        }       
 </script>
 </html>
-<!-- Create a webpage that displays buyers information entry form containing name, address, city, pincode, mailid, phone number, product details, payment mode. Frame different validation rules for user inputs. Use javascript and regular  expressions to perfrom error checking on user input as per validation rules -->
