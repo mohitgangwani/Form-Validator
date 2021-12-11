@@ -12,7 +12,7 @@
         <h3>Information</h3>
         <form id = "F">
             <div class = "group">
-                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="name" placeholder="Name" required maxlength="25">
                 <small id = "ername" class = "errormsg"></small>
             </div>
             <div class = "group">
@@ -61,7 +61,7 @@
     const phoneno = document.getElementById("phoneno");
     const details = document.getElementById("details");
     name.onkeydown = function(){
-        let regex = /^[a-zA-Z]([0-9A-Za-z][\\s]{0,10})/;
+        let regex = /^[a-zA-Z]([0-9A-Za-z])/;
         if(regex.test(name.value)){
             name.style.borderBottom = "1px solid green";
             document.getElementById('ername').innerHTML = ""
